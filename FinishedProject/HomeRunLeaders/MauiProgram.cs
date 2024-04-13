@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using HomeRunLeaders.View;
 
 namespace HomeRunLeaders
 {
@@ -18,7 +19,7 @@ namespace HomeRunLeaders
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
-
+            builder.Services.AddSingleton<MainPage>();
             return builder.Build();
         }
     }
