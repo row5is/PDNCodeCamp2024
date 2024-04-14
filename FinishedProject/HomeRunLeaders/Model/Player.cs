@@ -2,12 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace HomeRunLeaders.Model
 {
     public class Player
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
         public string id { get; set; }
         public string uid { get; set; }
@@ -27,17 +29,17 @@ namespace HomeRunLeaders.Model
         public int age { get; set; }
         public string dateOfBirth { get; set; }
         public int debutYear { get; set; }
-        public Link[] links { get; set; }
+        public List<Link> links { get; set; }
         public Birthplace birthPlace { get; set; }
         public string slug { get; set; }
         public Headshot headshot { get; set; }
         public string jersey { get; set; }
         public Position position { get; set; }
-        public Position1[] positions { get; set; }
+        public List<Position1> positions { get; set; }
         public object[] injuries { get; set; }
         public bool linked { get; set; }
         public Team team { get; set; }
-        public Team1[] teams { get; set; }
+        public List<Team1> teams { get; set; }
         public Statistics statistics { get; set; }
         public Projections projections { get; set; }
         public Notes notes { get; set; }
@@ -71,6 +73,7 @@ namespace HomeRunLeaders.Model
 
     public class Position
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
         public string id { get; set; }
         public string name { get; set; }
@@ -82,21 +85,25 @@ namespace HomeRunLeaders.Model
 
     public class Parent
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Projections
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Notes
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Contracts
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
@@ -114,16 +121,19 @@ namespace HomeRunLeaders.Model
 
     public class Event
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Statistics1
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Eventlog
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
@@ -152,7 +162,7 @@ namespace HomeRunLeaders.Model
     public class Link
     {
         public string language { get; set; }
-        public string[] rel { get; set; }
+        public List<string> rel { get; set; }
         public string href { get; set; }
         public string text { get; set; }
         public string shortText { get; set; }
@@ -162,6 +172,7 @@ namespace HomeRunLeaders.Model
 
     public class Position1
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
         public string id { get; set; }
         public string name { get; set; }
@@ -174,16 +185,19 @@ namespace HomeRunLeaders.Model
 
     public class Parent1
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Statistics2
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
     public class Team1
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
@@ -195,7 +209,7 @@ namespace HomeRunLeaders.Model
         public int splitTypeId { get; set; }
         public int season { get; set; }
         public int seasonType { get; set; }
-        public Zone[] zones { get; set; }
+        public List<Zone> zones { get; set; }
     }
 
     public class Zone

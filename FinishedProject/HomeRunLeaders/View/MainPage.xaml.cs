@@ -2,8 +2,9 @@ namespace HomeRunLeaders.View;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+	public MainPage(LeadersViewModel viewModel)
 	{
 		InitializeComponent();
+		BindingContext = viewModel;
 	}
 }

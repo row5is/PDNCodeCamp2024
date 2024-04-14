@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using HomeRunLeaders.View;
+using HomeRunLeaders.Services;
 
 namespace HomeRunLeaders
 {
@@ -19,7 +20,14 @@ namespace HomeRunLeaders
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+            builder.Services.AddSingleton<LeadersService>();
+
+            builder.Services.AddSingleton<LeadersViewModel>();
+            builder.Services.AddTransient<PlayerViewModel>();
+
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<DetailsPage>();
+
             return builder.Build();
         }
     }
