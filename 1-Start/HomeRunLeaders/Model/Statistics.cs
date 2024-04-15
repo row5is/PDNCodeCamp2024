@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text.Json.Serialization;
 
 namespace HomeRunLeaders.Model
 {
     public class Statistics
     {
+        [JsonPropertyName("$ref")]
         public string _ref { get; set; }
     }
 
