@@ -13,28 +13,61 @@
           RowSpacing="0">
 
 
-    <CollectionView
+        <CollectionView
         Grid.ColumnSpan="2"
-        ItemsSource="{Binding HrLeaders}">
-       
-        <CollectionView.ItemTemplate>
+        ItemsSource="{Binding HrLeaders}"
+        SelectionMode="None">
+            <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="model:HomeRuns">
-                <HorizontalStackLayout Padding="10">
-                    <Image
-                        Aspect="AspectFill"
-                        HeightRequest="100"
-                        Source="{Binding HeadShot}"
-                        WidthRequest="100" />
-                    <Label VerticalOptions="Center" TextColor="Black">
-                        <Label.Text>
-                        <MultiBinding StringFormat="{}{0} | {1} | {2}">
-                                <Binding Path="Name" />
-                                <Binding Path="HomeRunsCount"/>
-                                <Binding Path="Position"/>
-                            </MultiBinding>
-                        </Label.Text>
-                     </Label>   
-                </HorizontalStackLayout>
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"
+                               Padding="0"
+                               Style="{StaticResource CardView}">
+                            <!--<Frame.GestureRecognizers>
+                                <TapGestureRecognizer CommandParameter="{Binding .}"
+                                                      Command="{Binding Source{RelativeSource AncestorType={x:Type viewmodel:LeaderViewModel}}, Path=GoToDetailsCommand}"/>
+                            </Frame.GestureRecognizers>-->
+                            <Grid Padding="0"
+                                  ColumnDefinitions="125,*">
+                                <Image Aspect="AspectFill"
+                                       Source="{Binding HeadShot}"
+                                       WidthRequest="125"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                     Padding="10"
+                                                     VerticalOptions="Center">
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="0">
+                                        <Label Text="{Binding Rank, StringFormat='{0}. '}"
+                                               Style="{StaticResource LargeLabel}" />
+                                        <Label Text="{Binding Name}"
+                                               Style="{StaticResource LargeLabel}"/>
+                                    </StackLayout>
+                                    <!--<Label Text="{Binding Rank}"
+                                           Style="{StaticResource LargeLabel}"/>
+                                    <Label Text="{Binding Name}"-->
+                                           <!--Style="{StaticResource LargeLabel}"/>-->
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="0">
+                                        <Label Text="{Binding HomeRunsCount, StringFormat='HR: {0}  '}"
+                                               Style="{StaticResource MediumLabel}" />
+                                        <Label Text="{Binding Avg, StringFormat='Avg: {0}'}"
+                                               Style="{StaticResource MediumLabel}"/>
+                                    </StackLayout>
+                                    <!--<Label Text="{Binding HomeRunsCount, StringFormat='HR: {0}'}"
+                                           Style="{StaticResource MediumLabel}"/>-->
+                                    <StackLayout Orientation="Horizontal"
+                                                 Spacing="0">
+                                        <Label Text="{Binding Jersey, StringFormat='#{0}  '}"
+                                               Style="{StaticResource MediumLabel}" />
+                                        <Label Text="{Binding Position}"
+                                               Style="{StaticResource MediumLabel}"/>
+                                    </StackLayout>
+                                    <!--<Label Text="{Binding Position}"
+                                           Style="{StaticResource MediumLabel}"/>-->
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
     </CollectionView>
@@ -45,5 +78,12 @@
                 IsEnabled="{Binding IsNotBusy}"
                 Grid.Row="1"
                 Margin="8"/>
+        
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="FillAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>        
     </Grid>
 </ContentPage>

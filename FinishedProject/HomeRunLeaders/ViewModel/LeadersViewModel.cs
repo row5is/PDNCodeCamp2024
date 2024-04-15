@@ -11,7 +11,7 @@ namespace HomeRunLeaders.ViewModel
 
         public LeadersViewModel(LeadersService leaderService)
         {
-            Title = "HomeRun Leaders";
+            Title = "Home Run Leaders";
             this.leaderService = leaderService;
         }
 

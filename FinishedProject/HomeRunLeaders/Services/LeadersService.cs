@@ -2,6 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Json;
 
+
 namespace HomeRunLeaders.Services
 {
     public class LeadersService
@@ -32,6 +33,7 @@ namespace HomeRunLeaders.Services
             {
                 try
                 {
+                    var rank = 1;
                     leaders = await response.Content.ReadFromJsonAsync<Leaders>(options);
                     foreach (var item in leaders.categories) 
                     {
@@ -40,7 +42,10 @@ namespace HomeRunLeaders.Services
                             foreach (var hrLeader in item.leaders)
                             {
                                 HomeRuns homeRunLeader = new();
+                                var batting = hrLeader.displayValue.Split(',')[0].Split('-');
+                                homeRunLeader.Avg = (int)(float.Parse(batting[0]) / float.Parse(batting[1]) * 1000);
                                 homeRunLeader.HomeRunsCount = (int)hrLeader.value;
+                                homeRunLeader.Rank = rank;
                                 // Get the player record
                                 var hrResponse = await httpClient.GetAsync(hrLeader.athlete._ref);
                                 var athlete = await hrResponse.Content.ReadFromJsonAsync<Player>(options);
@@ -55,6 +60,7 @@ namespace HomeRunLeaders.Services
 
                                 homeRunLeaders.Add(homeRunLeader);
                                 players.Add(athlete);
+                                rank ++;
                                 
                             }
                         }
