@@ -1,5 +1,4 @@
 ﻿using HomeRunLeaders.Services;
-using HomeRunLeaders.View;
 
 namespace HomeRunLeaders.ViewModel
 {
@@ -13,6 +12,24 @@ namespace HomeRunLeaders.ViewModel
         {
             Title = "Home Run Leaders";
             this.leaderService = leaderService;
+        }
+
+        [RelayCommand]
+        async Task GoToDetails(HomeRuns hrLeader)
+        {
+            if (hrLeader is null) 
+            {
+                return;
+            }
+
+            var player = leaderService.GetPlayer(hrLeader.Id);
+            if (player is null) return;
+
+            await Shell.Current.GoToAsync($"{nameof(DetailsPage)}", true,
+                new Dictionary<string, object>
+                {
+                    {"Player", player }
+                });
         }
 
         [RelayCommand]

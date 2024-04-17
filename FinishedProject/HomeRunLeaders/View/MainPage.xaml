@@ -17,16 +17,18 @@
         Grid.ColumnSpan="2"
         ItemsSource="{Binding HrLeaders}"
         SelectionMode="None">
+
             <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="model:HomeRuns">
                     <Grid Padding="10">
                         <Frame HeightRequest="125"
                                Padding="0"
                                Style="{StaticResource CardView}">
-                            <!--<Frame.GestureRecognizers>
-                                <TapGestureRecognizer CommandParameter="{Binding .}"
-                                                      Command="{Binding Source{RelativeSource AncestorType={x:Type viewmodel:LeaderViewModel}}, Path=GoToDetailsCommand}"/>
-                            </Frame.GestureRecognizers>-->
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodel:LeadersViewModel}}, Path=GoToDetailsCommand}"
+                                    CommandParameter="{Binding .}"/>
+                            </Frame.GestureRecognizers>
                             <Grid Padding="0"
                                   ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFill"
@@ -42,28 +44,20 @@
                                         <Label Text="{Binding Name}"
                                                Style="{StaticResource LargeLabel}"/>
                                     </StackLayout>
-                                    <!--<Label Text="{Binding Rank}"
-                                           Style="{StaticResource LargeLabel}"/>
-                                    <Label Text="{Binding Name}"-->
-                                           <!--Style="{StaticResource LargeLabel}"/>-->
                                     <StackLayout Orientation="Horizontal"
-                                                 Spacing="0">
-                                        <Label Text="{Binding HomeRunsCount, StringFormat='HR: {0}  '}"
+                                                 Spacing="1">
+                                        <Label Text="{Binding HomeRunsCount, StringFormat='HR: {0} - '}"
                                                Style="{StaticResource MediumLabel}" />
                                         <Label Text="{Binding Avg, StringFormat='Avg: {0}'}"
                                                Style="{StaticResource MediumLabel}"/>
                                     </StackLayout>
-                                    <!--<Label Text="{Binding HomeRunsCount, StringFormat='HR: {0}'}"
-                                           Style="{StaticResource MediumLabel}"/>-->
                                     <StackLayout Orientation="Horizontal"
-                                                 Spacing="0">
-                                        <Label Text="{Binding Jersey, StringFormat='#{0}  '}"
+                                                 Spacing="1">
+                                        <Label Text="{Binding Jersey, StringFormat='#{0} - '}"
                                                Style="{StaticResource MediumLabel}" />
                                         <Label Text="{Binding Position}"
                                                Style="{StaticResource MediumLabel}"/>
                                     </StackLayout>
-                                    <!--<Label Text="{Binding Position}"
-                                           Style="{StaticResource MediumLabel}"/>-->
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>

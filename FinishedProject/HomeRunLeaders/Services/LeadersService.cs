@@ -76,5 +76,21 @@ namespace HomeRunLeaders.Services
 
             return homeRunLeaders;
         }
+
+        public List<Player> GetPlayers()
+        {
+            if (players is null)
+                return new List<Player>();
+
+            return players;
+        }
+
+        public Player GetPlayer(string id)
+        {
+            if (players is null)
+                return null;
+
+            return players.FirstOrDefault(p => p.id == id);
+        }
     }
 }
