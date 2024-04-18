@@ -22,7 +22,7 @@ namespace HomeRunLeaders.Model
         //public int height { get; set; }
         public string displayHeight { get; set; }
         public int age { get; set; }
-        public string dateOfBirth { get; set; }
+        public DateTime dateOfBirth { get; set; }
         public int debutYear { get; set; }
         public List<Link> links { get; set; }
         public Birthplace birthPlace { get; set; }
