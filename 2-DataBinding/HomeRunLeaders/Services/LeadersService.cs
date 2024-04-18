@@ -1,6 +1,6 @@
 ﻿namespace HomeRunLeaders.Services
 {
-    public class Leaders
+    public class LeadersService
     {
     }
 }
