@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="HomeRunLeaders.View.MainPage"
+             xmlns:viewmodel="clr-namespace:HomeRunLeaders.ViewModel"
+             xmlns:model="clr-namespace:HomeRunLeaders.Model"
+             x:DataType="viewmodel:LeadersViewModel"
+             Title="{Binding Title}">
+
+    <Grid ColumnDefinitions="*,*"
+            ColumnSpacing="5"
+            RowDefinitions="*,Auto"
+            RowSpacing="0">
+
+
+        <CollectionView
+                Grid.ColumnSpan="2"
+                ItemsSource="{Binding HrLeaders}"
+                SelectionMode="None">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:HomeRuns">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125"
+                                    Padding="0"
+                                    Style="{StaticResource CardView}">
+                            <Grid Padding="0"
+                                        ColumnDefinitions="125,*">
+                                <Image Aspect="AspectFill"
+                                            Source="{Binding HeadShot}"
+                                            WidthRequest="125"/>
+                                <VerticalStackLayout Grid.Column="1"
+                                                            Padding="10"
+                                                            VerticalOptions="Center">
+                                    <StackLayout Orientation="Horizontal"
+                                                        Spacing="0">
+                                        <Label Text="{Binding Rank, StringFormat='{0}. '}"
+                                                    Style="{StaticResource LargeLabel}" />
+                                        <Label Text="{Binding Name}"
+                                                    Style="{StaticResource LargeLabel}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
+                                                        Spacing="1">
+                                        <Label Text="{Binding HomeRunsCount, StringFormat='HR: {0} - '}"
+                                                    Style="{StaticResource MediumLabel}" />
+                                        <Label Text="{Binding Avg, StringFormat='Avg: {0}'}"
+                                                    Style="{StaticResource MediumLabel}"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal"
+                                                        Spacing="1">
+                                        <Label Text="{Binding Jersey, StringFormat='#{0} - '}"
+                                                    Style="{StaticResource MediumLabel}" />
+                                        <Label Text="{Binding Position}"
+                                                    Style="{StaticResource MediumLabel}"/>
+                                    </StackLayout>
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Get Leaders"
+                    Style="{StaticResource ButtonOutline}"
+                    Command="{Binding GetLeadersCommand}"
+                    IsEnabled="{Binding IsNotBusy}"
+                    Grid.Row="1"
+                    Margin="8"/>
+
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                            IsRunning="{Binding IsBusy}"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Grid.RowSpan="2"
+                            Grid.ColumnSpan="2"/>
+    </Grid>
+</ContentPage>    
