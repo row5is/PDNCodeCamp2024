@@ -1,6 +1,6 @@
 ﻿namespace HomeRunLeaders.ViewModel
 {
-    public class Player : BaseViewModel
+    public class PlayerViewModel : BaseViewModel
     {
     }
 }
