@@ -22,4 +22,79 @@ There is a Model folder in the solution. All the models needed should already be
 
 ![Paste Special](../Art/pasteSpecial.png)
 
-The HomeRuns model was built by hand.
+The HomeRuns model was built by hand. This is the model we will be displaying on the main page.
+
+### Displaying Data
+
+Before we go out and get actual data we will see how to display hard coded data based on our HomeRuns model
+
+1. Open the **View/MainPage.xaml** file.
+1. Add in a new namespace called model that points to the `HomeRunLeaders.Model` namespace.
+
+```xml
+xmlns:model="clr-namespace:HomeRunLeaders.Model"
+```
+
+This will allow us to reference the HomeRuns model for binding purposes.
+
+Add the following into the MainPage.xaml's `ContentPage` section:
+
+```xml
+    <CollectionView>
+        <CollectionView.ItemsSource>
+            <x:Array Type="{x:Type model:HomeRuns}">
+                <model:HomeRuns
+                    Name="Mike Trout"
+                    HomeRunsCount="6"
+                    Jersey="27"
+                    HeadShot="https://a.espncdn.com/i/headshots/mlb/players/full/30836.png"
+                    Position="Center Field"/>
+                <model:HomeRuns
+                    Name="Marcell Ozuna"
+                    HomeRunsCount="6"
+                    Jersey="20"
+                    HeadShot="https://a.espncdn.com/i/headshots/mlb/players/full/31668.png"
+                    Position="Designated Hitter"/>
+                <model:HomeRuns
+                    Name="Mookie Betts"
+                    HomeRunsCount="6"
+                    Jersey="50"
+                    HeadShot="https://a.espncdn.com/i/headshots/mlb/players/full/33039.png"
+                    Position="Short Stop"/>
+            </x:Array>
+        </CollectionView.ItemsSource>
+        <CollectionView.ItemTemplate>
+            <DataTemplate x:DataType="model:HomeRuns">
+                <HorizontalStackLayout Padding="10">
+                    <Image
+                    Aspect="AspectFill"
+                    HeightRequest="100"
+                    Source="{Binding HeadShot}"
+                    WidthRequest="100" />
+                    <Label VerticalOptions="Center" TextColor="Gray">
+                        <Label.Text>
+                            <MultiBinding StringFormat="{}{0} | {1}">
+                                <Binding Path="Name" />
+                                <Binding Path="Position" />
+                            </MultiBinding>
+                        </Label.Text>
+                    </Label>
+                </HorizontalStackLayout>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+```
+
+### Run the App
+
+Ensure that you have your machine setup to deploy and debug to the different platforms:
+
+* [Android Emulator Setup](https://docs.microsoft.com/dotnet/maui/android/emulator/device-manager)
+* [Windows setup for development](https://docs.microsoft.com/dotnet/maui/windows/setup)
+
+1. In Visual Studio, set the Android or Windows app as the startup project by selecting the drop down in the debug menu and changing the target to either an emulator.
+
+2. In Visual Studio, click the "Debug" button or Tools -> Start Debugging
+    - If you are having any trouble, see the Setup guides for your runtime platform
+
+Running the app will result in a list of three MLB Players:
