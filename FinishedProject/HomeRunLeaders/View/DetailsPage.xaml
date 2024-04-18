@@ -4,7 +4,11 @@
              x:Class="HomeRunLeaders.DetailsPage"
              xmlns:viewmodel ="clr-namespace:HomeRunLeaders.ViewModel"
              x:DataType="viewmodel:PlayerViewModel"
+             xmlns:local ="clr-namespace:HomeRunLeaders.Converters"
              Title="{Binding Player.displayName}">
+    <ContentPage.Resources>
+        <local:BoolToStringConverter x:Key="boolToString"/>
+    </ContentPage.Resources>
     <ScrollView>
         <VerticalStackLayout>
             <Grid ColumnDefinitions="*,Auto,*"
@@ -31,10 +35,58 @@
                 </Frame>
 
             </Grid>
-            <VerticalStackLayout Padding="10" Spacing="10">
-                <Label Text="{Binding Player.position.displayName}"
-                       Style="{StaticResource MediumLabel}"/>
-            </VerticalStackLayout>
+            <Grid ColumnDefinitions="*,*"
+                  RowDefinitions="*,*,*,*"
+                  Padding="10">
+                <Label Grid.Column="0"
+                       Grid.Row="0"
+                       Text="HT/WT"
+                       Style="{StaticResource LargeLabel}"/>
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Grid.Column="1"
+                             Grid.Row="0">
+                    <Label Text="{Binding Player.displayHeight, StringFormat='{0}, '}"
+                           Style="{StaticResource LargeLabel}" />
+                    <Label Text="{Binding Player.displayWeight}"
+                           Style="{StaticResource LargeLabel}"/>
+                </StackLayout>
+                <Label Grid.Column="0"
+                       Grid.Row="1"
+                       Text="BIRTHDATE"
+                       Style="{StaticResource LargeLabel}"/>
+                <StackLayout Orientation="Horizontal"
+                             Spacing="0"
+                             Grid.Column="1"
+                             Grid.Row="1">
+                    <Label Text="{Binding Player.dateOfBirth, StringFormat='{0:d}'}"
+                           Style="{StaticResource LargeLabel}" />
+                    <Label Text="{Binding Player.age, StringFormat=' ({0})'}"
+                           Style="{StaticResource LargeLabel}"/>
+                </StackLayout>
+                <Label Grid.Column="0"
+                       Grid.Row="2"
+                       Text="BAT/THR"
+                       Style="{StaticResource LargeLabel}"/>
+                <StackLayout Orientation="Horizontal"
+                             Spacing="1"
+                             Grid.Column="1"
+                             Grid.Row="2">
+                    <Label Text="{Binding Player.throws.displayValue}"
+                           Style="{StaticResource LargeLabel}" />
+                    <Label Text="{Binding Player.bats.displayValue, StringFormat='/{0}'}"
+                           Style="{StaticResource LargeLabel}"/>
+                </StackLayout>
+                <Label Grid.Column="0"
+                       Grid.Row="3"
+                       Text="STATUS"
+                       Style="{StaticResource LargeLabel}"/>
+                <Label Grid.Column="1"
+                       Grid.Row="3"
+                       Text="{Binding Player.active, Converter={StaticResource boolToString}}"
+                       Style="{StaticResource LargeLabel}"/>
+            </Grid>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
