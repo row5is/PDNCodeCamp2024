@@ -677,3 +677,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
     ```
 
 ### Run the app    
+
+1. In Visual Studio, set the iOS, Android, macOS, or Windows project as the startup project 
+
+2. In Visual Studio, click "Start Debugging". When the application starts you will see a **Get Leaders** button that when pressed will load home run leader data from the internet!
