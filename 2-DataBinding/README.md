@@ -488,7 +488,7 @@ Before we can run the app, we must register all of our dependencies. Open the `M
 
     We are regisetering these classes as singletons so they will only be created once.    
 
-1. In the code behind for the project we will inject our `MonkeysViewModel` into our MainPage:
+1. In the code behind for the project we will inject our `LEadersViewModel` into our MainPage:
 
     ```csharp
     public MainPage(LeadersViewModel viewModel)
