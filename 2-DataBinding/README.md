@@ -572,7 +572,7 @@ It is now time to build the .NET MAUI user interface in `View/MainPage.xaml`. Ou
                 Grid.ColumnSpan="2"
                 ItemsSource="{Binding HrLeaders}"
                 SelectionMode="None">
-            <collectionView>
+            </CollectionView>
         </Grid>
     </ContentPage>    
     ```
